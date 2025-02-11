@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WeatherForecast"
         mc:Ignorable="d"
         Title="Weather Forecast"
-        Height="500" Width="800" Background="#E5E5E5">
+        Height="500" Width="800" Background="#E5E5E5"
+        ResizeMode="NoResize">
 
 
     <Window.Resources>

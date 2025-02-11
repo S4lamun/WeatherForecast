@@ -13,25 +13,37 @@
 
         <TextBlock Text="Weather Data:"
                    FontSize="24" FontWeight="Bold"
-                   HorizontalAlignment="Left" Margin="245,10,0,10"/>
+                   HorizontalAlignment="Left" Margin="20,10,0,10"/>
 
 
-        <DataGrid x:Name="DataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,60,20,60" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGrid" Margin="20,60,10,71" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Time [Day-Month-Year Hour:Minute" Binding="{Binding Time, StringFormat={}{0:dd-MMMM-yyyy HH:mm}}" />
                 <DataGridTextColumn Header="Temperature [C]" Binding="{Binding Temperature}" />
                 <DataGridTextColumn Header="Precipitation [mm]" Binding="{Binding Precipitation}" />
+                <DataGridTextColumn Header="Precipitation Probability [%]" Binding="{Binding PrecipitationProbability}" />
                 <DataGridTextColumn Header="Humidity [%]" Binding="{Binding Humidity}" />
                 <DataGridTextColumn Header="Wind Speed [m/s]" Binding="{Binding WindSpeed}" />
+                <DataGridTextColumn Header="Pressure [hPa]" Binding="{Binding Pressure}" />
+                
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="ExitButton"
-                Content="Exit"
-                Width="100" Height="40"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom" Margin="0,20,0,20"
-                Click="ExitButton_Click"/>
-        <TextBlock x:Name="NameBlock" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="430,10,0,10"/>
+        <DockPanel LastChildFill="False">
+            <TextBlock x:Name="NameBlock"
+               FontSize="24" FontWeight="Bold"
+               HorizontalAlignment="Left"
+               Margin="200,10,0,10"
+               DockPanel.Dock="Top"/>
+
+            <Button x:Name="ExitButton"
+            Content="Exit"
+            Width="135" Height="40"
+            HorizontalAlignment="Left"
+            Margin="330,5,0,0"
+            Click="ExitButton_Click"
+            Background="AliceBlue"
+            DockPanel.Dock="Bottom"/>
+        </DockPanel>
     </Grid>
 </Window>

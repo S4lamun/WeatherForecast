@@ -34,9 +34,12 @@ namespace WeatherForecast
                         Time = d,
                         Temperature = Weather.Hourly.Temperature_2m[i],
                         Precipitation = Weather.Hourly.Precipitation[i],
+                        PrecipitationProbability = Weather.Hourly.PrecipitationProbability[i],
                         Humidity = Weather.Hourly.Relative_Humidity_2m[i],
-                        WindSpeed = Weather.Hourly.Windspeed_10m[i]
+                        WindSpeed = Weather.Hourly.Windspeed_10m[i],
+                        Pressure = Weather.Hourly.Pressure[i]
                     });
+
                 }
 
                 DataGrid.ItemsSource = new ObservableCollection<WeatherEntry>(weatherEntries);
@@ -51,6 +54,7 @@ namespace WeatherForecast
         public void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            mainWindow.ResetTownBox(); // resets name of TextBox
             mainWindow.Show(); // return to MainWindow
         }
     }
@@ -63,6 +67,8 @@ namespace WeatherForecast
         public float Precipitation { get; set; }
         public int Humidity { get; set; }
         public float WindSpeed { get; set; }
+        public float PrecipitationProbability { get; set; }
+        public float Pressure { get; set; }
     }
 }
     

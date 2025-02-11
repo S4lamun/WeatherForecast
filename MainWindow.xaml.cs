@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System;
 
 
 namespace WeatherForecast
@@ -38,16 +39,22 @@ namespace WeatherForecast
                 TownBox.Foreground = Brushes.Black;
             }
         }
+        public void ResetTownBox()
+        {
+            TownBox.Text = "Enter City Name";
+            TownBox.Foreground = Brushes.Black; 
+        }
 
 
 
         private async void FindButton_Click(object sender, RoutedEventArgs e)
         {
             string spot = TownBox.Text;
-            Name = spot;
+            
             if (string.IsNullOrEmpty(spot) || TownBox.Text == "Enter City Name")
             {
                 MessageBox.Show("You must enter the name of city", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                return;
             }
 
             //Getting City Coordiantes
@@ -65,9 +72,10 @@ namespace WeatherForecast
                 if (towns != null && towns.Count > 0)
                 {
                     Console.WriteLine($"Latitude: {towns[0].Latitude}, Longitude: {towns[0].Longitude}"); // Getting first search of City
+                    Name = towns[0].DisplayName;
 
                     // Getting Hourly Data of our City
-                    string meteoUrl = $"https://api.open-meteo.com/v1/forecast?latitude={towns[0].Latitude}" + $"&longitude={towns[0].Longitude}" + $"&hourly=temperature_2m,precipitation,relative_humidity_2m,windspeed_10m" + $"&forecast_days=7" + $"&timezone=Europe/Berlin";
+                    string meteoUrl = $"https://api.open-meteo.com/v1/forecast?latitude={towns[0].Latitude}" + $"&longitude={towns[0].Longitude}" + $"&hourly=temperature_2m,precipitation,relative_humidity_2m,windspeed_10m,precipitation_probability,pressure_msl&forecast_days=7&timezone=Europe/Berlin";
 
                     using HttpClient clientMeteo = new HttpClient();
 

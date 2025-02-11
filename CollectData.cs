@@ -16,7 +16,10 @@ namespace WeatherForecast
 
             [JsonPropertyName("lon")]
             public string Longitude { get; set; }
-        }
+
+        [JsonPropertyName("display_name")]
+        public string DisplayName { get; set; }
+    }
 
       public  class HourlyData
         {
@@ -34,7 +37,14 @@ namespace WeatherForecast
 
             [JsonPropertyName("windspeed_10m")]
             public float[] Windspeed_10m { get; set; }
-        }
+
+        [JsonPropertyName("precipitation_probability")]
+        public float[] PrecipitationProbability { get; set; }
+
+        [JsonPropertyName ("pressure_msl")]
+        public float[] Pressure { get; set; }
+
+    }
 
         //Class to collect MeteoData - gathers Hourly data of Temperature, Precipitation, Humudity, Windspeed
        public class WeatherResponse
