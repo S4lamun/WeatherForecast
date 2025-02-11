@@ -43,6 +43,13 @@ x64/
 *.log
 *.svclog
 *.scc
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.userprefs
 
 # Visual C++ cache files
 ipch/
