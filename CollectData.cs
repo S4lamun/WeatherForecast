@@ -6,49 +6,57 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WeatherForecast
-{
-
-        // Class to get coordinates
+{   
+    //Added required because this data is necessary for program to work 
        public class Town
         {
             [JsonPropertyName("lat")]
-            public string Latitude { get; set; }
+           required public string Latitude { get; set; }
 
             [JsonPropertyName("lon")]
-            public string Longitude { get; set; }
+        required public string Longitude { get; set; }
 
-        [JsonPropertyName("display_name")]
-        public string DisplayName { get; set; }
-    }
+            [JsonPropertyName("display_name")]
+        required public string DisplayName { get; set; }
 
-      public  class HourlyData
-        {
-            [JsonPropertyName("time")]
-            public string[] Time { get; set; }
 
-            [JsonPropertyName("temperature_2m")]
-            public float[] Temperature_2m { get; set; }
+        } // Class to get coordinates
 
-            [JsonPropertyName("precipitation")]
-            public float[] Precipitation { get; set; }
 
-            [JsonPropertyName("relative_humidity_2m")]
-            public int[] Relative_Humidity_2m { get; set; }
+       public  class HourlyData
+    {
+        [JsonPropertyName("time")]
+        required public string[] Time { get; set; }
 
-            [JsonPropertyName("windspeed_10m")]
-            public float[] Windspeed_10m { get; set; }
+
+        [JsonPropertyName("temperature_2m")]
+        required public float[] Temperature_2m { get; set; }
+
+
+        [JsonPropertyName("precipitation")]
+        required public float[] Precipitation { get; set; }
+
+
+        [JsonPropertyName("relative_humidity_2m")]
+        required public int[] Relative_Humidity_2m { get; set; }
+
+
+        [JsonPropertyName("windspeed_10m")]
+        required public float[] Windspeed_10m { get; set; }
+
 
         [JsonPropertyName("precipitation_probability")]
-        public float[] PrecipitationProbability { get; set; }
+        required public float[] PrecipitationProbability { get; set; }
+
 
         [JsonPropertyName ("pressure_msl")]
-        public float[] Pressure { get; set; }
+        required public float[] Pressure { get; set; }
 
-    }
+    } // Class for Hourly Data
 
-        //Class to collect MeteoData - gathers Hourly data of Temperature, Precipitation, Humudity, Windspeed
-       public class WeatherResponse
-        {
-            public HourlyData Hourly { get; set; }
-        }
+        
+       public class WeatherResponse //Class to collect MeteoData - gathers Hourly data of Temperature, Precipitation, Humudity, Windspeed
+       {
+        required public HourlyData Hourly { get; set; }
+       }
 }
