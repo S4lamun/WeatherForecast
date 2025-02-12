@@ -122,7 +122,7 @@ namespace WeatherForecast
 
                 if (WeatherData != null && WeatherData.Hourly != null)
                 {
-                    await Task.Delay(3000);
+                    
                     Forecast forecastWindow = new(this, WeatherData, Name);
 
                     this.Hide(); // hiding MainWindow
@@ -147,9 +147,6 @@ namespace WeatherForecast
         } // Shutting down application
         #endregion
 
-        private async Task Delay(int milliseconds)
-        {
-            await Task.Delay(milliseconds);
-        } // function for making delay (for loadingScreen)
+      
     }
 }
