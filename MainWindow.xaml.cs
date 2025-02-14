@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace WeatherForecast
@@ -16,12 +17,16 @@ namespace WeatherForecast
         WeatherResponse WeatherData { get; set; }
         new string Name { get; set; }
         List<Town> Towns { get; set; }
+        bool TemperatureBool;
+        bool SpeedBool;
         #endregion
 
         public MainWindow()
         {
             InitializeComponent();
             TownBox.Text = "Enter City Name";
+            TemperatureBool = false;
+            SpeedBool = false;
         }
 
         #region TownBox
@@ -123,7 +128,7 @@ namespace WeatherForecast
                 if (WeatherData != null && WeatherData.Hourly != null)
                 {
                     
-                    Forecast forecastWindow = new(this, WeatherData, Name);
+                    Forecast forecastWindow = new(this, WeatherData, Name, TemperatureBool, SpeedBool);
 
                     this.Hide(); // hiding MainWindow
                     forecastWindow.ShowDialog();
@@ -146,7 +151,34 @@ namespace WeatherForecast
             Application.Current.Shutdown();
         } // Shutting down application
         #endregion
+       
+        #region CheckBox
+        private void TemperatureCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            TemperatureBool = true;
+        }
 
-      
+        private void SpeedCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            SpeedBool = true;
+        }
+
+        private void TemperatureCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TemperatureBool = false;
+        }
+
+        private void SpeedCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SpeedBool = false;
+        }
+
+        public void CheckBoxReset()
+        {
+            TemperatureCheck.IsChecked = false;
+            SpeedCheck.IsChecked = false;
+
+        }
+        #endregion
     }
 }

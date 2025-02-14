@@ -15,10 +15,10 @@
         <TextBlock Text="Weather Data:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="20,10,0,10"/>
 
 
-        <DataGrid x:Name="DataGrid" Margin="20,60,10,71" AutoGenerateColumns="False">
+        <DataGrid x:Name="WeatherGrid" Margin="20,60,10,71" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Time [Day-Month-Year Hour:Minute" Binding="{Binding Time, StringFormat={}{0:dd-MMMM-yyyy HH:mm}}" />
-                <DataGridTextColumn Header="Temperature [C]" Binding="{Binding Temperature}" />
+                <DataGridTextColumn Header="Temperature [°C]" Binding="{Binding Temperature}" />
                 <DataGridTextColumn Header="Precipitation [mm]" Binding="{Binding Precipitation}" />
                 <DataGridTextColumn Header="Precipitation Probability [%]" Binding="{Binding PrecipitationProbability}" />
                 <DataGridTextColumn Header="Humidity [%]" Binding="{Binding Humidity}" />

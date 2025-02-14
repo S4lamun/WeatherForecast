@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace WeatherForecast
 {
@@ -11,16 +12,20 @@ namespace WeatherForecast
         #region GlobalVariable
         private WeatherResponse WeatherData { get; set; }
         private MainWindow mainWindow;
+        bool TemperatureBool;
+        bool SpeedBool;
         #endregion
 
-        public Forecast(MainWindow mainWindow, WeatherResponse weatherData, string name)
+        public Forecast(MainWindow mainWindow, WeatherResponse weatherData, string name, bool temperatureBool, bool speedBool)
         {
             InitializeComponent();
             WeatherData = weatherData;
             this.mainWindow = mainWindow;
             NameBlock.Text = name;
+            TemperatureBool = temperatureBool;
+            SpeedBool = speedBool;
 
-           
+            UpdateColumnHeaders();
             if (WeatherData.Hourly != null)
             {
                 // Create a list of WeatherEntry objects to hold filtered hourly weather data
@@ -39,30 +44,51 @@ namespace WeatherForecast
                     weatherEntries.Add(new WeatherEntry
                     {
                         Time = d,
-                        Temperature = WeatherData.Hourly.Temperature[i],
+                        Temperature = temperatureBool?((WeatherData.Hourly.Temperature[i]*(float)(9.0/5.0))+32):(WeatherData.Hourly.Temperature[i]), 
                         Precipitation = WeatherData.Hourly.Precipitation[i],
                         PrecipitationProbability = WeatherData.Hourly.PrecipitationProbability[i],
                         Humidity = WeatherData.Hourly.Relative_Humidity[i],
-                        WindSpeed = WeatherData.Hourly.Windspeed[i],
+                        WindSpeed = speedBool ? (WeatherData.Hourly.Windspeed[i]* (float)0.62137):(WeatherData.Hourly.Windspeed[i]),
                         Pressure = WeatherData.Hourly.Pressure[i]
                     });
+                   
                 }
 
                 // Set the ObservableCollection as the data source for the DataGrid
-                DataGrid.ItemsSource = new ObservableCollection<WeatherEntry>(weatherEntries);
+                WeatherGrid.ItemsSource = new ObservableCollection<WeatherEntry>(weatherEntries);
             }
             else
             {
                 // If there is no weather data, show an error message
                 MessageBox.Show("No weather Data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
+        private void UpdateColumnHeaders()
+        {
+            foreach (var column in WeatherGrid.Columns)
+            {
+                switch (column.Header.ToString())
+                {
+                    case "Temperature [°C]":
+                        column.Header = TemperatureBool ? "Temperature [°F]" : "Temperature [°C]";
+                        break;
+                    
+                    case "Wind Speed [km/h]":
+                        column.Header = SpeedBool ? "Wind Speed [mil/h]" : "Wind Speed [km/h]";
+                        break;
+
+                }
+            }
+        } // updating WeatherGrid column headers if there are other units
         
         public void ExitButton_Click(object sender, RoutedEventArgs e) // Event handler for Exit button click, which closes the Forecast window and resets the main window
         {
             this.Close(); // Close the Forecast window
             mainWindow.ResetTownBox(); // Reset the TextBox in the main window
+            mainWindow.CheckBoxReset();
+            mainWindow.ResetChooseCombo();
             mainWindow.Show(); // Show the main window again
         }
     }

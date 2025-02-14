@@ -46,6 +46,16 @@
             <Setter Property="Height" Value="40"/>
         </Style>
 
+        <Style x:Key="CkeckBoxStyle" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
 
     </Window.Resources>
 
@@ -63,8 +73,8 @@
 
 
         <TextBlock x:Name="ChooseBlock" HorizontalAlignment="Left" Height="44" Margin="50,261,0,49" TextWrapping="Wrap" Text="Choose City from list" FontSize="16" FontWeight="Bold" Width="193" Foreground="#388E3C"/>
-        
-        
+
+
         <TextBox x:Name="TownBox" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Enter City Name" Foreground="Gray" Style="{StaticResource TextBoxStyle}" GotFocus="TownBox_GotFocus" LostFocus="TownBox_LostFocus" Margin="263,148,0,0" Width="262" Height="51"/>
 
 
@@ -75,5 +85,14 @@
 
 
         <ComboBox x:Name="ChooseCombo" DisplayMemberPath="DisplayName" HorizontalAlignment="Center" Height="73" Margin="0,242,0,0" VerticalAlignment="Top" Width="262" Style="{StaticResource ComboBoxStyle}"  SelectionChanged="ChooseCombo_SelectionChanged"/>
+
+
+        <CheckBox x:Name="TemperatureCheck" Content="Fahrenheit degrees" HorizontalAlignment="Left" Height="40" Margin="602,30,0,0" Grid.Row="2" VerticalAlignment="Top" Width="124" Checked="TemperatureCheck_Checked" Unchecked="TemperatureCheck_Unchecked" Style="{StaticResource CkeckBoxStyle}" Grid.RowSpan="2"/>
+
+
+        <CheckBox x:Name="SpeedCheck" Content="Wind Speed in miles" HorizontalAlignment="Left" Height="40" Margin="599,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="137" Checked="SpeedCheck_Checked" Unchecked="SpeedCheck_Unchecked" Style="{StaticResource CkeckBoxStyle}"/>
+
+
+        <TextBlock x:Name="UnitsBlock" HorizontalAlignment="Left" Height="39" Margin="599,325,0,0" TextWrapping="Wrap" Text="Choose other units (standard: °C and km/h)" VerticalAlignment="Top" Width="151" Foreground="#388E3C" FontWeight="Bold" Grid.RowSpan="3"/>
     </Grid>
 </Window>
