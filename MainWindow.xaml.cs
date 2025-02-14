@@ -27,6 +27,7 @@ namespace WeatherForecast
             TownBox.Text = "Enter City Name";
             TemperatureBool = false;
             SpeedBool = false;
+            Name = string.Empty; 
         }
 
         #region TownBox

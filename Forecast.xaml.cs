@@ -44,11 +44,11 @@ namespace WeatherForecast
                     weatherEntries.Add(new WeatherEntry
                     {
                         Time = d,
-                        Temperature = temperatureBool?((WeatherData.Hourly.Temperature[i]*(float)(9.0/5.0))+32):(WeatherData.Hourly.Temperature[i]), 
+                        Temperature = temperatureBool ? Math.Round(((WeatherData.Hourly.Temperature[i] * (float)(9.0 / 5.0)) + 32),1) : (WeatherData.Hourly.Temperature[i]),
                         Precipitation = WeatherData.Hourly.Precipitation[i],
                         PrecipitationProbability = WeatherData.Hourly.PrecipitationProbability[i],
                         Humidity = WeatherData.Hourly.Relative_Humidity[i],
-                        WindSpeed = speedBool ? (WeatherData.Hourly.Windspeed[i]* (float)0.62137):(WeatherData.Hourly.Windspeed[i]),
+                        WindSpeed = speedBool ? Math.Round((WeatherData.Hourly.Windspeed[i] * (float)0.62137),1) : (WeatherData.Hourly.Windspeed[i]),
                         Pressure = WeatherData.Hourly.Pressure[i]
                     });
                    
@@ -98,16 +98,16 @@ namespace WeatherForecast
     {
         public DateTime Time { get; set; } // Time of the weather entry
 
-        public float Temperature { get; set; } // Temperature value
+        public double Temperature { get; set; } // Temperature value
 
-        public float Precipitation { get; set; } // Amount of precipitation
+        public double Precipitation { get; set; } // Amount of precipitation
 
         public int Humidity { get; set; } // Humidity percentage
 
-        public float WindSpeed { get; set; } // Wind speed
+        public double WindSpeed { get; set; } // Wind speed
 
-        public float PrecipitationProbability { get; set; } // Probability of precipitation
+        public double PrecipitationProbability { get; set; } // Probability of precipitation
 
-        public float Pressure { get; set; } // Atmospheric pressure
+        public double Pressure { get; set; } // Atmospheric pressure
     }
 }

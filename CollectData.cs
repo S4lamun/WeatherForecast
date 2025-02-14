@@ -26,22 +26,22 @@ namespace WeatherForecast
         public required string[] Time { get; set; }
 
         [JsonPropertyName("temperature_2m")]
-        public required float[] Temperature { get; set; }
+        public required double[] Temperature { get; set; }
 
         [JsonPropertyName("precipitation")]
-        public required float[] Precipitation { get; set; }
+        public required double[] Precipitation { get; set; }
 
         [JsonPropertyName("relative_humidity_2m")]
         public required int[] Relative_Humidity { get; set; }
 
         [JsonPropertyName("windspeed_10m")]
-        public required float[] Windspeed { get; set; }
+        public required double[] Windspeed { get; set; }
 
         [JsonPropertyName("precipitation_probability")]
-        public required float[] PrecipitationProbability { get; set; }
+        public required double[] PrecipitationProbability { get; set; }
 
         [JsonPropertyName("pressure_msl")]
-        public required float[] Pressure { get; set; }
+        public required double[] Pressure { get; set; }
     } // Class for Hourly Data
 
     public class WeatherResponse // Class to collect MeteoData - gathers Hourly data of Temperature, Precipitation, Humidity, Windspeed
