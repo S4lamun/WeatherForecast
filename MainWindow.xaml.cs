@@ -90,13 +90,21 @@ namespace WeatherForecast
 
         public void ResetChooseCombo()
         {
-            ChooseCombo.Text = null;
+            ChooseCombo.Text = string.Empty;
+            ChooseCombo.ItemsSource = null;
+            
         }
         #endregion Combo
 
         #region Buttons
         private async void FindButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(ChooseCombo.Text))
+            {
+                MessageBox.Show("Please select a city from the list.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (string.IsNullOrEmpty(TownBox.Text) || TownBox.Text == "Enter City Name")
             {
                 MessageBox.Show("You must enter the name of city", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
